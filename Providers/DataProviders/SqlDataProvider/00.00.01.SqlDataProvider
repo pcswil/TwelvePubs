@@ -1,0 +1,91 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+IF NOT EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubsEvents]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+
+BEGIN CREATE TABLE [dbo].[TwelvePubsEvents](
+	[EventID] [int] NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Date] [date] NOT NULL,
+	[StartTime] [time](7) NOT NULL,
+	[EndTime] [time](7) NOT NULL,
+	[City] [nvarchar](50) NOT NULL,
+	[Latitude]  [nvarchar](50) NOT NULL,
+	[Longitude]  [nvarchar](50) NOT NULL,
+	[Organiser] [nvarchar](50) NULL
+	)
+
+	ALTER TABLE {databaseOwner}[{objectQualifier}TwelvePubsEvents] ADD CONSTRAINT [PK_{databaseOwner}{objectQualifier}TwelvePubsEvents] PRIMARY KEY CLUSTERED  ([EventID])
+END
+
+GO
+
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubs_GetEvents]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PRECEDURE {databaseOwner}[{objectQualifier}TwelvePubs_GetEvents
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}TwelvePubs_GetEvents
+    @EventID int
+AS
+Select EventID,
+       Name,
+      Date,
+       StartTime,
+     EndTime,
+       City,
+      Latitude,
+      Longitude,
+       Organiser
+	   FROM TwelvePubsEvents
+	   Where EventID = @EventID;
+	   GO
+
+
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubs_AddEvent]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PRECEDURE {databaseOwner}[{objectQualifier}TwelvePubs_AddEvent
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}[TwelvePubs_AddEvent]
+  @Name nvarchar(50),
+  @Date datetime,
+  @StartTime datetime,
+  @EndTime datetime,
+  @City nvarchar(50),
+  @Latitude float,
+  @Longitude float,
+  @Organiser nvarchar(50)
+  AS
+  INSERT INTO dbo.TwelvePubsEvents(
+  Name,
+  Date,
+  StartTime, 
+  EndTime,
+  City,
+  Latitude,
+ Longitude,
+  Organiser
+  )
+  VALUES(
+  @Name,
+  @Date,
+  @StartTime,
+  @EndTime,
+  @City,
+  @Latitude,
+  @Longitude,
+  @Organiser 
+  )
+  SELECT @@IDENTITY
+  GO
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

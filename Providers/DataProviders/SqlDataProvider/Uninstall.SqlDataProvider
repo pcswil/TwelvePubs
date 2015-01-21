@@ -1,0 +1,13 @@
+﻿IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubsEvents]') and OBJECTPROPERTY(id, N'IsTable') = 1)
+DROP TABLE {databaseOwner}[{objectQualifier}TwelvePubsEvents]
+GO
+
+
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubs_GetEvents]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP TABLE {databaseOwner}[{objectQualifier}TwelvePubs_GetEvents]
+GO
+
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = object_id(N'{databaseOwner}[{objectQualifier}TwelvePubs_AddEvent]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP TABLE {databaseOwner}[{objectQualifier}TwelvePubs_AddEvent]
+GO

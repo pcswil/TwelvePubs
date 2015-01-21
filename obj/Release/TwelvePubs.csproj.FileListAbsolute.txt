@@ -1,0 +1,5 @@
+C:\inetpub\wwwroot\DNN734-150107\bin\TwelvePubs.dll
+C:\inetpub\wwwroot\DNN734-150107\bin\TwelvePubs.pdb
+C:\inetpub\wwwroot\DNN734-150107\DesktopModules\TwelvePubs\obj\Release\TwelvePubs.csprojResolveAssemblyReference.cache
+C:\inetpub\wwwroot\DNN734-150107\DesktopModules\TwelvePubs\obj\Release\TwelvePubs.dll
+C:\inetpub\wwwroot\DNN734-150107\DesktopModules\TwelvePubs\obj\Release\TwelvePubs.pdb
